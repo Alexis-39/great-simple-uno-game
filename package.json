@@ -1,0 +1,53 @@
+{
+  "name": "Tarot",
+  "description": "Jouer Tarot sur ligne",
+  "dependencies": {
+    "compression": "~1.7.3",
+    "connect": "~3.6.6",
+    "emoji": "~0.3.2",
+    "es6-shim": "~0.35.4",
+    "npm": "^6.4.1",
+    "react": "~16.6.0",
+    "react-document-title": "~2.0.3",
+    "react-dom": "~16.6.0",
+    "send": "~0.16.2",
+    "systemd-socket": "~0.0.0",
+    "uuid": "~3.3.2",
+    "websocket": "~1.0.28"
+  },
+  "devDependencies": {
+    "@types/compression": "0.0.36",
+    "@types/connect": "~3.4.32",
+    "@types/node": "~10.12.2",
+    "@types/react": "~16.4.18",
+    "@types/react-document-title": "~2.0.3",
+    "@types/react-dom": "~16.0.9",
+    "@types/send": "~0.14.4",
+    "@types/uuid": "~3.4.4",
+    "@types/websocket": "0.0.40",
+    "autoprefixer": "^9.3.1",
+    "clean-webpack-plugin": "~0.1.19",
+    "css-loader": "~1.0.1",
+    "mini-css-extract-plugin": "~0.4.4",
+    "npm-check-updates": "^2.14.2",
+    "optimize-css-assets-webpack-plugin": "~5.0.1",
+    "postcss-loader": "~3.0.0",
+    "source-map-loader": "~0.2.4",
+    "ts-loader": "~5.3.0",
+    "tslint": "~5.11.0",
+    "typescript": "~3.1.6",
+    "webpack": "~4.24.0",
+    "webpack-cli": "~3.1.2"
+  },
+  "scripts": {
+    "start": "webpack-cli --watch --mode=development",
+    "build": "webpack-cli --mode=production",
+    "updatepackages": "ncu -u -a",
+    "buildServer": "tsc -m commonjs --project .",
+    "startServer": "node lib/server/main.js",
+    "buildStartServer": "npm run buildServer && npm run startServer",
+    "startProductionServer": "NODE_ENV=production npm run startServer",
+    "lint": "tslint --project . --force",
+    "lint-fix": "tslint --project . --fix --force"
+  }
+}
