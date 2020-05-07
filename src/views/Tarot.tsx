@@ -8,6 +8,7 @@ import {Etats} from '../server/Jeu';
 import Chat from './Chat';
 import Nom from './Nom';
 import Table from './Table';
+import {WEB_SERVER} from '../sharedconfig';
 
 const w3cwebsocket: typeof WebSocket = (websocket as any).w3cwebsocket;
 
@@ -55,7 +56,7 @@ export default class Tarot extends React.Component<{}, ITarotState> {
 
     public connectWebsocket() {
         const client = new w3cwebsocket((location.protocol === 'http:' ? 'ws://' : 'wss://') + location.hostname +
-            (location.port ? ':' + location.port : '') + '/tarot/ws/', 'tarot-protocol');
+            (location.port ? ':' + location.port : '') + WEB_SERVER + '/ws/', 'uno-protocol');
 
         client.onerror = () => {
             console.error('Connection Error');
@@ -71,7 +72,7 @@ export default class Tarot extends React.Component<{}, ITarotState> {
         };
 
         client.onclose = () => {
-            console.debug('tarot-protocol Client Closed');
+            console.debug('uno-protocol Client Closed');
             setTimeout(() => this.connectWebsocket(), 6000);
         };
 
@@ -181,10 +182,10 @@ function notifyUser(text: string, sound: string) {
     if (pageActive) {
         return;
     }
-    const audio = new Audio('/tarot/static/' + sound + '.ogg');
+    const audio = new Audio(WEB_SERVER + '/static/' + sound + '.ogg');
     audio.play()
         .catch(() => {
-            const fallbackAudio = new Audio('/tarot/static/' + sound + '.mp3');
+            const fallbackAudio = new Audio(WEB_SERVER + '/static/' + sound + '.mp3');
             fallbackAudio.play();
         });
 }
