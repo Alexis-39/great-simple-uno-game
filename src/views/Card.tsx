@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card as CardEnum} from '../enums/Card';
 import Jeu from '../server/Jeu';
+import {WEB_SERVER} from '../sharedconfig';
 
 export interface ICardProps {
     card: CardEnum;
@@ -57,7 +58,7 @@ export default class Card extends React.Component<ICardProps> {
         const card = this.props.card;
         const showBack = this.props.showBack;
         if (card === '--') {
-            return <img className="card" src="/tarot/img/unoback3.png" style={{width: '57.12px', height: '85.8px'}} 
+            return <img className="card" src={WEB_SERVER + '/img/unoback3.png'} style={{width: '57.12px', height: '85.8px'}}
                 onClick={()=> {
                     if (this.props.onClick) {
                         this.props.onClick(this.props.card);
@@ -65,7 +66,7 @@ export default class Card extends React.Component<ICardProps> {
             }}/>;
         }
         if (showBack){
-            return <img className="card" src="/tarot/img/unoback3.png" style={{width: '57.12px', height: '85.8px'}}
+            return <img className="card" src={WEB_SERVER + '/img/unoback3.png'} style={{width: '57.12px', height: '85.8px'}}
                 onClick={()=> {
                     if (this.props.onClick) {
                         this.props.onClick(this.props.card);
@@ -75,7 +76,7 @@ export default class Card extends React.Component<ICardProps> {
         
         const {row, column} = Card.findRowColumn(card);
         const style = {
-            background: 'url(/UNO/img/unocardsS.png)',
+            background: 'url(' + WEB_SERVER + '/img/unocardsS.png)',
             backgroundPosition: (-57.12 * column) + 'px ' + (-85.8 * row) + 'px', //142.8 ; 214.5
             height: '85.8px', //'214.5px'
             width: '57.12px', //'142.8px'

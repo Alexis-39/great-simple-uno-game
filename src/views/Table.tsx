@@ -5,6 +5,7 @@ import {Etats} from '../server/Jeu';
 import CardStack from './CardStack';
 import Pioche from './Pioche';
 import Nom from './Nom';
+import {WEB_SERVER} from '../sharedconfig';
 
 export interface ITableProps {
     jeu: IData;
@@ -116,14 +117,14 @@ export default class Table extends React.Component<ITableProps> {
 
             if (jeu.sensHoraire === true) {
                 indicateurSens = <div className="container">
-                    <img className="sensCercle" src="/tarot/img/sensCercleAntiBigBorder.png" style={{ width: sizeIndicateur + 'px', height: sizeIndicateur + 'px' }} />
+                    <img className="sensCercle" src={WEB_SERVER + '/img/sensCercleAntiBigBorder.png'} style={{ width: sizeIndicateur + 'px', height: sizeIndicateur + 'px' }} />
                     {NomJoueurDisplay}
                 </div>
             }
 
             if (jeu.sensHoraire === false) {
                 indicateurSens = <div className="container">
-                    <img className="sensCercle" src="/tarot/img/sensCercleBigBorder.png" style={{ width: sizeIndicateur + 'px', height: sizeIndicateur + 'px' }} />
+                    <img className="sensCercle" src={WEB_SERVER + '/img/sensCercleBigBorder.png'} style={{ width: sizeIndicateur + 'px', height: sizeIndicateur + 'px' }} />
                     {NomJoueurDisplay}
                 </div>
             }
@@ -208,10 +209,10 @@ export default class Table extends React.Component<ITableProps> {
 
 function sayUno (){
     //this.props.sayUno(,)
-    const audio = new Audio('/tarot/static/siren.ogg');
+    const audio = new Audio(WEB_SERVER + '/static/siren.ogg');
     audio.play()
         .catch(() => {
-            const fallbackAudio = new Audio('/tarot/static/siren.mp3');
+            const fallbackAudio = new Audio(WEB_SERVER + '/static/siren.mp3');
             fallbackAudio.play();
         });
 }

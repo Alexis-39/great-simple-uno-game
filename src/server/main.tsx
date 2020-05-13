@@ -11,11 +11,11 @@ import systemdSocket from 'systemd-socket';
 import {server as WebSocketServer} from 'websocket';
 import {Action} from '../datastructure/actions';
 import {createActionHandler, open, save} from './Orga';
+import {WEB_SERVER} from '../sharedconfig';
 
 const jsFile = {content: '', hash: '', path: ''};
 let cssData = '';
 
-const WEB_SERVER = '/tarot';
 const BUILD_DIR = 'dist';
 const PORT = 8181;
 const IMG_DIR = __dirname + '/../../img/';
@@ -120,7 +120,7 @@ function servestatic(req: IncomingMessage, res: ServerResponse, next: Function) 
         error('Empty url');
         return;
     }
-    if (req.url === '/' || req.url === '/tarot/') {
+    if (req.url === '/' || req.url === WEB_SERVER + '/') {
         next();
         return;
     }
@@ -173,7 +173,7 @@ wsServer.on('request', request => {
         return;
     }
 
-    const connection = request.accept('tarot-protocol', request.origin);
+    const connection = request.accept('uno-protocol', request.origin);
     console.debug((new Date()) + ' Connection accepted.');
 
     const actionHandler = createActionHandler(connection);
