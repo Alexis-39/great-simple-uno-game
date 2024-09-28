@@ -10,7 +10,7 @@
     "react": "~16.6.0",
     "react-document-title": "~2.0.3",
     "react-dom": "~16.6.0",
-    "send": "~0.16.2",
+    "send": "~0.19.0",
     "systemd-socket": "~0.0.0",
     "uuid": "~3.3.2",
     "websocket": "~1.0.28"
